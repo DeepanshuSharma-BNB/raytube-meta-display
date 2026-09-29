@@ -6,138 +6,142 @@
 <meta name="theme-color" content="#000000">
 <meta name="mrbd-web-app-capable" content="yes">
 <link rel="manifest" href="./manifest.webmanifest">
-<title>RayTube</title>
+<title>RayTube · YouTube for Meta Ray-Ban Display</title>
 <style>
-:root{color-scheme:dark;--bg:#000;--panel:#111319;--panel2:#1a1d24;--line:#343944;--text:#fff;--muted:#b7bdc9;--red:#ff3b30;--soft:#232731}
-*{box-sizing:border-box}html,body,#app{width:100%;height:100%;margin:0}body{background:#000;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;overflow:hidden}button,input{font:inherit}
+:root{color-scheme:dark;--bg:#000;--panel:#121212;--panel2:#202020;--line:#303030;--text:#fff;--muted:#aaa;--red:#ff0033;--chip:#272727}
+*{box-sizing:border-box}html,body,#app{width:100%;height:100%;margin:0}body{background:#000;color:#fff;font-family:Roboto,Arial,system-ui,sans-serif;overflow:hidden}button,input{font:inherit}
 #app{width:min(600px,100vw);height:min(600px,100vh);margin:auto;background:#000;position:relative;overflow:hidden}
-.view{display:none;height:100%;padding:18px;overflow:hidden}.view.active{display:flex;flex-direction:column}
-header{display:flex;align-items:center;justify-content:space-between;gap:10px}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.14em}.brand h1,.brand h2{margin:2px 0 0}.brand h1{font-size:34px}.brand h2{font-size:26px}
-.btn,.tile,.ctrl,.item{border:1px solid var(--line);background:var(--panel2);color:#fff;border-radius:15px;font-weight:800}.btn{min-height:50px;padding:0 15px}.icon{width:50px;padding:0;font-size:22px}.primary{background:var(--red);border-color:transparent}.focus:focus-visible{outline:4px solid #fff;outline-offset:3px;transform:scale(1.02)}
-.kicker{margin-top:18px;color:var(--muted);font-size:12px;font-weight:800}.prompt{font-size:23px;font-weight:900;line-height:1.15;margin:4px 0 10px}.muted{color:var(--muted);font-size:12px;line-height:1.4}
-.smartRow{display:grid;grid-template-columns:1fr auto;gap:8px}.input{min-width:0;min-height:58px;padding:0 15px;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:#fff;outline:none}.input::placeholder{color:#8f96a3}
-.hint{margin:8px 2px 0;color:var(--muted);font-size:11px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.tile{min-height:86px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.tile span:first-child{font-size:25px}.tile small{color:var(--muted);font-weight:700;font-size:10px}
-.quick{display:flex;gap:8px;overflow:hidden;margin-top:14px}.chip{border:1px solid var(--line);background:var(--panel);color:#fff;border-radius:999px;min-height:40px;padding:0 13px;font-weight:800;white-space:nowrap}.status{margin-top:auto;text-align:center;color:var(--muted);font-size:11px;padding-top:8px}
-.list{display:flex;flex-direction:column;gap:8px;overflow:auto;margin-top:12px;padding-bottom:10px;scrollbar-width:none}.list::-webkit-scrollbar{display:none}.item{display:grid;grid-template-columns:92px 1fr;gap:10px;text-align:left;padding:8px;min-height:78px}.thumb{width:92px;height:62px;object-fit:cover;border-radius:9px}.title{font-weight:850;font-size:13px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.meta{color:var(--muted);font-size:10px;margin-top:4px}
-.playerTop{height:46px}.playerTitle{min-width:0;flex:1;text-align:center;font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.frame{width:100%;aspect-ratio:16/9;min-height:220px;background:#0b0c0f;border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-top:8px}.frame iframe,#yt{width:100%!important;height:100%!important;border:0}.controls{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:9px}.ctrl{min-height:50px;min-width:0;font-size:14px}.main{background:var(--red);border-color:transparent;font-size:20px}.prog{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;gap:7px;color:var(--muted);font-size:10px;margin-top:8px}.track{height:5px;background:var(--panel2);border-radius:10px;overflow:hidden}.fill{height:100%;width:0;background:var(--red)}
-.card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:14px;margin-top:14px}.wide{width:100%;margin-top:10px}.empty{border:1px dashed var(--line);border-radius:14px;padding:18px;color:var(--muted);text-align:center}.notice{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:12px;margin-top:10px}.notice b{display:block;margin-bottom:4px}.secondary{background:var(--soft)}
-.badge{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:10px;font-weight:800}.dot{width:7px;height:7px;border-radius:50%;background:#46d36f}.dot.warn{background:#ffb020}
-@media(max-height:520px){.kicker{margin-top:8px}.prompt{font-size:18px}.grid{margin-top:10px}.tile{min-height:66px}.frame{min-height:175px}.btn,.ctrl{min-height:44px}}
+.view{display:none;height:100%;overflow:hidden}.view.active{display:flex;flex-direction:column}
+.topbar{height:66px;display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #1f1f1f;background:#000;flex:0 0 auto}
+.brand{display:flex;align-items:center;gap:7px;white-space:nowrap}.ytmark{width:34px;height:24px;border-radius:7px;background:#f00;display:grid;place-items:center}.ytmark:after{content:"";display:block;margin-left:2px;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}.brandName{font-weight:900;font-size:21px;letter-spacing:-.5px}.mini{font-size:8px;color:#777;margin-left:1px;align-self:flex-start;margin-top:5px}
+.searchWrap{display:flex;min-width:0;flex:1;height:42px}.search{flex:1;min-width:0;border:1px solid #303030;background:#121212;color:#fff;border-radius:22px 0 0 22px;padding:0 15px;outline:none}.searchBtn{width:49px;border:1px solid #303030;border-left:0;background:#222;color:#fff;border-radius:0 22px 22px 0;font-size:19px}.iconBtn{width:42px;height:42px;border:1px solid #303030;background:#202020;color:#fff;border-radius:50%;font-size:19px}
+.focus:focus-visible{outline:3px solid #fff;outline-offset:2px;transform:scale(1.025)}
+.nav{display:flex;gap:8px;padding:9px 14px;overflow-x:auto;scrollbar-width:none;flex:0 0 auto;border-bottom:1px solid #161616}.nav::-webkit-scrollbar{display:none}.chip{border:0;background:var(--chip);color:#fff;border-radius:8px;min-height:34px;padding:0 13px;font-weight:700;white-space:nowrap}.chip.active{background:#fff;color:#000}
+.content{flex:1;min-height:0;overflow-y:auto;padding:12px 14px 18px;scrollbar-width:none}.content::-webkit-scrollbar{display:none}.sectionTitle{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px}.sectionTitle h2{font-size:17px;margin:0}.sectionTitle span{font-size:10px;color:#777}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}.videoCard{border:0;background:transparent;color:#fff;text-align:left;padding:0;border-radius:11px;overflow:hidden}.thumbWrap{position:relative;width:100%;aspect-ratio:16/9;background:#181818;border-radius:10px;overflow:hidden}.thumb{width:100%;height:100%;object-fit:cover;display:block}.duration{position:absolute;right:5px;bottom:5px;background:rgba(0,0,0,.82);padding:2px 4px;border-radius:4px;font-size:9px;font-weight:700}.vtitle{font-size:12px;font-weight:700;line-height:1.25;margin-top:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.meta{font-size:9.5px;color:#aaa;line-height:1.35;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.empty{border:1px solid #2d2d2d;background:#111;border-radius:14px;padding:18px;text-align:center;color:#aaa}.empty b{display:block;color:#fff;font-size:15px;margin-bottom:6px}.empty p{margin:0 0 12px;font-size:11px;line-height:1.45}.btn{border:1px solid #343434;background:#242424;color:#fff;border-radius:999px;min-height:40px;padding:0 16px;font-weight:800}.primary{background:#fff;color:#000;border-color:#fff}.red{background:#f00;color:#fff;border-color:#f00}
+.loading{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 10px}.sk{height:150px;border-radius:10px;background:linear-gradient(100deg,#111 20%,#222 40%,#111 60%);background-size:200% 100%;animation:sh 1.1s infinite}@keyframes sh{to{background-position:-200% 0}}
+.playerHead{height:56px;display:flex;align-items:center;gap:9px;padding:8px 12px}.playerTitle{min-width:0;flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;font-weight:800}.playerBox{margin:0 14px;width:calc(100% - 28px);aspect-ratio:16/9;min-height:250px;background:#111;border-radius:10px;overflow:hidden}.playerBox iframe,#yt{width:100%!important;height:100%!important;border:0}.controls{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:10px 14px 0}.ctrl{min-width:0;height:45px;border:1px solid #333;background:#202020;color:#fff;border-radius:22px;font-weight:800}.ctrl.main{background:#fff;color:#000}.progress{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;gap:6px;margin:9px 16px;color:#aaa;font-size:9px}.track{height:4px;background:#292929;border-radius:8px;overflow:hidden}.fill{height:100%;width:0;background:#f00}.playerMeta{padding:0 16px}.playerMeta h3{font-size:14px;margin:3px 0 4px}.playerMeta p{font-size:10px;color:#aaa;margin:0}
+.settings{padding:14px;overflow-y:auto}.settings h2{margin:2px 0 12px}.card{background:#111;border:1px solid #2d2d2d;border-radius:14px;padding:14px;margin-bottom:10px}.card h3{font-size:14px;margin:0 0 5px}.card p{font-size:10px;color:#aaa;line-height:1.45;margin:0 0 10px}.field{width:100%;height:44px;border:1px solid #343434;background:#0b0b0b;color:#fff;border-radius:10px;padding:0 12px;outline:none}.settingsRow{display:grid;grid-template-columns:1fr 88px;gap:8px}.footNote{color:#666;font-size:9px;line-height:1.4;margin-top:10px}
+@media(max-height:500px){.topbar{height:56px}.nav{padding-top:6px;padding-bottom:6px}.content{padding-top:8px}.playerBox{min-height:205px}.vtitle{font-size:11px}}
 </style>
 </head>
 <body>
 <main id="app">
-<section id="home" class="view active">
-<header>
-  <div class="brand"><small>META RAY-BAN DISPLAY</small><h1>RayTube</h1></div>
-  <button class="btn icon focus" data-a="settings" aria-label="Settings">⚙</button>
-</header>
-<div class="kicker">HANDS-FREE YOUTUBE</div>
-<div class="prompt">What do you want to watch?</div>
-<div class="smartRow">
-  <input id="smartInput" class="input focus" inputmode="search" autocomplete="off" placeholder="Dictate a title or paste a link">
-  <button class="btn primary focus" data-a="smartGo">Go</button>
-</div>
-<div class="hint">Tap the field, then use Meta's on-glasses dictation, handwriting, or keyboard.</div>
-<div class="quick">
-  <button class="chip focus" data-q="music">Music</button>
-  <button class="chip focus" data-q="news">News</button>
-  <button class="chip focus" data-q="technology">Tech</button>
-</div>
-<div class="grid">
-  <button class="tile focus" data-a="recent"><span>↺</span><span>Recent</span><small>continue watching</small></button>
-  <button class="tile focus" data-a="favorites"><span>☆</span><span>Favorites</span><small>saved videos</small></button>
-  <button class="tile focus" data-a="linkMode"><span>↗</span><span>Open link</span><small>advanced</small></button>
-</div>
-<div id="homeStatus" class="status"><span class="badge"><span id="apiDot" class="dot warn"></span><span id="apiState">Search setup not finished</span></span></div>
-</section>
-
-<section id="search" class="view">
-<header><button class="btn icon focus" data-a="home">‹</button><div class="brand"><small>YOUTUBE</small><h2>Search</h2></div><button class="btn icon focus" data-a="settings">⚙</button></header>
-<div class="smartRow" style="margin-top:12px"><input id="searchInput" class="input focus" inputmode="search" placeholder="Dictate what to watch"><button class="btn primary focus" data-a="doSearch">Go</button></div>
-<div id="searchHint" class="muted" style="margin-top:8px">Searching YouTube…</div>
-<div id="searchList" class="list"></div>
-</section>
-
-<section id="link" class="view">
-<header><button class="btn icon focus" data-a="home">‹</button><div class="brand"><small>ADVANCED</small><h2>Open link</h2></div><span></span></header>
-<div class="card">
-  <div class="muted">Paste a YouTube URL or 11-character video ID.</div>
-  <input id="videoInput" class="input focus" style="width:100%;margin-top:10px" placeholder="https://youtu.be/...">
-  <button class="btn primary wide focus" data-a="load">Open video</button>
-</div>
-</section>
-
-<section id="saved" class="view">
-<header><button class="btn icon focus" data-a="home">‹</button><div class="brand"><small>RAYTUBE</small><h2 id="savedTitle">Recent</h2></div><span></span></header>
-<div id="savedList" class="list"></div>
+<section id="feed" class="view active">
+  <div class="topbar">
+    <div class="brand"><span class="ytmark"></span><span class="brandName">YouTube</span><span class="mini">via RayTube</span></div>
+    <div class="searchWrap">
+      <input id="searchInput" class="search focus" inputmode="search" autocomplete="off" placeholder="Search YouTube">
+      <button class="searchBtn focus" data-a="search" aria-label="Search">⌕</button>
+    </div>
+    <button class="iconBtn focus" data-a="settings" aria-label="Settings">⚙</button>
+  </div>
+  <nav class="nav">
+    <button class="chip focus active" data-feed="home">Home</button>
+    <button class="chip focus" data-feed="trending">Trending</button>
+    <button class="chip focus" data-feed="music">Music</button>
+    <button class="chip focus" data-feed="gaming">Gaming</button>
+    <button class="chip focus" data-feed="news">News</button>
+    <button class="chip focus" data-feed="sports">Sports</button>
+  </nav>
+  <div id="content" class="content"></div>
 </section>
 
 <section id="player" class="view">
-<header class="playerTop"><button class="btn icon focus" data-a="back">‹</button><div id="playerTitle" class="playerTitle">YouTube video</div><button id="favBtn" class="btn icon focus" data-a="fav">☆</button></header>
-<div class="frame"><div id="yt"></div></div>
-<div class="controls"><button class="ctrl focus" data-a="rw">−10</button><button id="pp" class="ctrl main focus" data-a="pp">▶</button><button class="ctrl focus" data-a="ff">+10</button><button id="speed" class="ctrl focus" data-a="speed">1×</button><button id="mute" class="ctrl focus" data-a="mute">🔊</button></div>
-<div class="prog"><span id="elapsed">0:00</span><div class="track"><div id="fill" class="fill"></div></div><span id="duration">0:00</span></div>
-<div id="playerStatus" class="status">Loading player…</div>
+  <div class="playerHead">
+    <button class="iconBtn focus" data-a="back">‹</button>
+    <div id="playerTitle" class="playerTitle">YouTube</div>
+    <button class="iconBtn focus" data-a="fav">☆</button>
+  </div>
+  <div class="playerBox"><div id="yt"></div></div>
+  <div class="controls">
+    <button class="ctrl focus" data-a="rw">−10</button>
+    <button id="pp" class="ctrl main focus" data-a="pp">▶</button>
+    <button class="ctrl focus" data-a="ff">+10</button>
+    <button id="speed" class="ctrl focus" data-a="speed">1×</button>
+    <button id="mute" class="ctrl focus" data-a="mute">🔊</button>
+  </div>
+  <div class="progress"><span id="elapsed">0:00</span><div class="track"><div id="fill" class="fill"></div></div><span id="duration">0:00</span></div>
+  <div class="playerMeta"><h3 id="watchTitle"></h3><p id="watchMeta"></p></div>
 </section>
 
 <section id="settings" class="view">
-<header><button class="btn icon focus" data-a="home">‹</button><div class="brand"><small>ONE-TIME SETUP</small><h2>Search</h2></div><span></span></header>
-<div class="notice"><b>Direct links already work.</b><div class="muted">For native RayTube search, add a browser-restricted YouTube Data API v3 key once. The app then lets you dictate titles directly on the glasses.</div></div>
-<div class="card">
-  <div class="muted">YouTube Data API v3 key</div>
-  <input id="apiKey" class="input focus" style="width:100%;margin-top:8px" type="password" placeholder="Paste API key">
-  <button class="btn primary wide focus" data-a="save">Save search key</button>
-  <button class="btn secondary wide focus" data-a="youtubeFallback">Use YouTube search instead</button>
-</div>
-<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div><b>Default captions</b><div class="muted">Ask YouTube to enable captions when available.</div></div><button id="cc" class="btn focus" data-a="cc">On</button></div></div>
-<button class="btn wide focus" data-a="clear">Clear recents & favorites</button>
+  <div class="playerHead"><button class="iconBtn focus" data-a="backSettings">‹</button><div class="playerTitle">RayTube settings</div><span style="width:42px"></span></div>
+  <div class="settings">
+    <h2>YouTube connection</h2>
+    <div class="card">
+      <h3>One-time API key</h3>
+      <p>Search, Trending, Music, Gaming, News and Sports use the official YouTube Data API. Paste a YouTube Data API v3 key once. It stays in this browser.</p>
+      <input id="apiKey" class="field focus" type="password" placeholder="YouTube Data API v3 key">
+      <button class="btn primary focus" style="width:100%;margin-top:8px" data-a="saveKey">Save & load YouTube</button>
+    </div>
+    <div class="card">
+      <h3>Region for Trending</h3>
+      <p>Two-letter region code used by YouTube's mostPopular chart.</p>
+      <div class="settingsRow"><input id="region" class="field focus" maxlength="2" value="DE"><button class="btn focus" data-a="saveRegion">Save</button></div>
+    </div>
+    <div class="card">
+      <h3>About this interface</h3>
+      <p>This is an unofficial glasses front end backed by YouTube's official APIs. It does not copy or iframe the full youtube.com website. Home uses YouTube's Most Popular chart because the public API does not expose the personalized youtube.com Home feed.</p>
+    </div>
+    <div class="footNote">Neural Band navigation uses the standard Arrow key + Enter events exposed by Meta Web Apps. Text fields use Meta's normal on-glasses text composer.</div>
+  </div>
 </section>
 </main>
 
 <script src="https://www.youtube.com/iframe_api"></script>
 <script>
 (()=>{'use strict';
-const S={key:'raytube.key',cc:'raytube.cc',recent:'raytube.recent',fav:'raytube.fav',prog:'raytube.progress'};
-const st={view:'home',prev:'home',player:null,ready:false,video:null,timer:null,cc:localStorage.getItem(S.cc)!=='false',rates:[1,1.25,1.5,2,.75],ri:0,lastQuery:''};
-const $=id=>document.getElementById(id), views=['home','search','link','saved','player','settings'];
-const E={smartInput:$('smartInput'),videoInput:$('videoInput'),homeStatus:$('homeStatus'),apiDot:$('apiDot'),apiState:$('apiState'),searchInput:$('searchInput'),searchHint:$('searchHint'),searchList:$('searchList'),savedTitle:$('savedTitle'),savedList:$('savedList'),playerTitle:$('playerTitle'),favBtn:$('favBtn'),pp:$('pp'),speed:$('speed'),mute:$('mute'),elapsed:$('elapsed'),duration:$('duration'),fill:$('fill'),playerStatus:$('playerStatus'),apiKey:$('apiKey'),cc:$('cc')};
-const parse=(v,f)=>{try{return JSON.parse(v)}catch{return f}}, list=k=>{const x=parse(localStorage.getItem(k),[]);return Array.isArray(x)?x:[]}, put=(k,v)=>localStorage.setItem(k,JSON.stringify(v.slice(0,30)));
-const getProgress=()=>parse(localStorage.getItem(S.prog),{}), setProgress=(id,t)=>{if(!id||!Number.isFinite(t)||t<0)return;const p=getProgress();p[id]=Math.floor(t);localStorage.setItem(S.prog,JSON.stringify(p))};
-function idOf(v){const r=String(v||'').trim();if(/^[A-Za-z0-9_-]{11}$/.test(r))return r;try{const u=new URL(r);if(u.hostname==='youtu.be')return u.pathname.split('/').filter(Boolean)[0]||null;if(u.hostname.includes('youtube.com')){if(u.pathname==='/watch')return u.searchParams.get('v');const p=u.pathname.split('/').filter(Boolean);if(['shorts','embed','live'].includes(p[0])&&p[1])return p[1]}}catch{}return null}
-const thumb=id=>`https://i.ytimg.com/vi/${encodeURIComponent(id)}/mqdefault.jpg`;
-function syncApiState(){const ok=!!(localStorage.getItem(S.key)||'').trim();E.apiDot.classList.toggle('warn',!ok);E.apiState.textContent=ok?'Native search ready':'Search setup not finished'}
-function show(v,sel){if(!views.includes(v))return;if(st.view!==v)st.prev=st.view;views.forEach(x=>$(x).classList.toggle('active',x===v));st.view=v;requestAnimationFrame(()=>{const t=sel?document.querySelector(sel):$(v).querySelector('.focus');t?.focus();t?.scrollIntoView?.({block:'nearest'})})}
-function focusables(){return [...document.querySelectorAll('#'+st.view+' .focus:not([disabled])')].filter(x=>x.offsetParent!==null)}
-function move(dir){const n=focusables();if(!n.length)return;const a=document.activeElement;let i=n.indexOf(a);if(i<0)i=0;const c=n[i].getBoundingClientRect();let best=null;n.forEach((el,j)=>{if(j===i)return;const r=el.getBoundingClientRect(),dx=(r.left+r.width/2)-(c.left+c.width/2),dy=(r.top+r.height/2)-(c.top+c.height/2),p=dir==='left'?-dx:dir==='right'?dx:dir==='up'?-dy:dy;if(p<=2)return;const s=(dir==='left'||dir==='right')?Math.abs(dy):Math.abs(dx),score=p+s*2.2;if(!best||score<best.score)best={el,score}});(best?.el||n[(i+(dir==='left'||dir==='up'?-1:1)+n.length)%n.length]).focus()}
-function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function item(v){const b=document.createElement('button');b.className='item focus';const p=getProgress()[v.id]||0;b.innerHTML=`<img class="thumb" src="${esc(v.thumb||thumb(v.id))}" alt=""><span><span class="title">${esc(v.title||'YouTube '+v.id)}</span><span class="meta">${esc(v.channel||'YouTube')}${p>10?' · resume '+ft(p):''}</span></span>`;b.onclick=()=>open(v);return b}
-function recent(v){const x=list(S.recent).filter(i=>i.id!==v.id);x.unshift({...v,t:Date.now()});put(S.recent,x)}
-function fav(id){return list(S.fav).some(x=>x.id===id)}function favUI(){if(st.video)E.favBtn.textContent=fav(st.video.id)?'★':'☆'}
-function toggleFav(){if(!st.video)return;const x=list(S.fav),i=x.findIndex(v=>v.id===st.video.id);i>=0?x.splice(i,1):x.unshift({...st.video,t:Date.now()});put(S.fav,x);favUI()}
-function saved(kind){saveProgress();const x=list(kind==='fav'?S.fav:S.recent);E.savedTitle.textContent=kind==='fav'?'Favorites':'Recent';E.savedList.innerHTML='';if(!x.length)E.savedList.innerHTML='<div class="empty">Nothing here yet.</div>';else x.forEach(v=>E.savedList.appendChild(item(v)));show('saved','.item')}
-function open(v){saveProgress();st.video={id:v.id,title:v.title||'YouTube '+v.id,channel:v.channel||'YouTube',thumb:v.thumb||thumb(v.id)};E.playerTitle.textContent=st.video.title;recent(st.video);favUI();show('player','[data-a="pp"]');load(v.id)}
-function fromLink(){const id=idOf(E.videoInput.value||E.smartInput.value);if(!id){E.homeStatus.textContent='That does not look like a YouTube link.';return}open({id,title:'YouTube '+id})}
-function smartGo(){const raw=E.smartInput.value.trim();if(!raw)return;const id=idOf(raw);if(id){open({id,title:'YouTube '+id});return}st.lastQuery=raw;E.searchInput.value=raw;show('search','#searchInput');search()}
-function fallbackSearch(q){const u='https://www.youtube.com/results?search_query='+encodeURIComponent(q||E.searchInput.value.trim()||E.smartInput.value.trim());location.href=u}
-function mkPlayer(id){if(!window.YT?.Player)return false;const start=Math.max(0,getProgress()[id]||0);st.player=new YT.Player('yt',{videoId:id,playerVars:{autoplay:0,controls:1,playsinline:1,rel:0,start,cc_load_policy:st.cc?1:0,origin:location.origin},events:{onReady:()=>{st.ready=true;E.playerStatus.textContent=start>10?'Ready · resume available':'Ready';buttons();progress()},onStateChange:()=>{buttons();saveProgress()},onError:e=>E.playerStatus.textContent='YouTube playback error ('+e.data+')'}});return true}
-function load(id){E.playerStatus.textContent='Loading…';st.ri=0;E.speed.textContent='1×';if(st.player&&st.ready){const start=Math.max(0,getProgress()[id]||0);st.player.cueVideoById({videoId:id,startSeconds:start});return}if(!mkPlayer(id)){const w=setInterval(()=>{if(window.YT?.Player){clearInterval(w);mkPlayer(id)}},250);setTimeout(()=>clearInterval(w),10000)}}
-function buttons(){if(!st.ready)return;E.pp.textContent=st.player.getPlayerState?.()===YT.PlayerState.PLAYING?'❚❚':'▶';E.mute.textContent=st.player.isMuted?.()?'🔇':'🔊'}
+const $=id=>document.getElementById(id);
+const K={key:'raytube.apiKey',region:'raytube.region',fav:'raytube.favorites',recent:'raytube.recent',prog:'raytube.progress'};
+const state={view:'feed',feed:'home',player:null,ready:false,video:null,timer:null,rateIndex:0,rates:[1,1.25,1.5,2,.75],lastFocus:null};
+const E={content:$('content'),search:$('searchInput'),apiKey:$('apiKey'),region:$('region'),playerTitle:$('playerTitle'),watchTitle:$('watchTitle'),watchMeta:$('watchMeta'),pp:$('pp'),speed:$('speed'),mute:$('mute'),elapsed:$('elapsed'),duration:$('duration'),fill:$('fill')};
+const parse=(s,f)=>{try{return JSON.parse(s)}catch{return f}};
+const key=()=>localStorage.getItem(K.key)||'';
+const region=()=>((localStorage.getItem(K.region)||'DE').trim().toUpperCase()||'DE');
+const thumb=id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const fmtViews=n=>{n=Number(n)||0;if(n>=1e9)return(n/1e9).toFixed(n>=1e10?0:1)+'B views';if(n>=1e6)return(n/1e6).toFixed(n>=1e7?0:1)+'M views';if(n>=1e3)return(n/1e3).toFixed(n>=1e4?0:1)+'K views';return n?n+' views':''};
+const fmtDuration=s=>{const m=String(s||'').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);if(!m)return'';const h=+m[1]||0,mi=+m[2]||0,se=+m[3]||0;return h?`${h}:${String(mi).padStart(2,'0')}:${String(se).padStart(2,'0')}`:`${mi}:${String(se).padStart(2,'0')}`};
+const timeAgo=d=>{const t=Date.parse(d),s=Math.max(1,(Date.now()-t)/1000);if(s<3600)return Math.floor(s/60)+' min ago';if(s<86400)return Math.floor(s/3600)+' hours ago';if(s<2592000)return Math.floor(s/86400)+' days ago';if(s<31536000)return Math.floor(s/2592000)+' months ago';return Math.floor(s/31536000)+' years ago'};
+function show(id){['feed','player','settings'].forEach(v=>$(v).classList.toggle('active',v===id));state.view=id;requestAnimationFrame(()=>$(id).querySelector('.focus')?.focus())}
+function loading(){E.content.innerHTML='<div class="loading">'+Array.from({length:6},()=>'<div class="sk"></div>').join('')+'</div>'}
+function setup(){E.content.innerHTML=`<div class="empty"><b>Connect YouTube once</b><p>To show real YouTube search and popular videos inside the glasses, RayTube needs a YouTube Data API v3 key.</p><button class="btn primary focus" data-a="settings">Set up YouTube</button></div>`}
+function api(path,params={}){const u=new URL('https://www.googleapis.com/youtube/v3/'+path);Object.entries({...params,key:key()}).forEach(([k,v])=>v!==''&&v!=null&&u.searchParams.set(k,v));return fetch(u).then(async r=>{const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j?.error?.message||('YouTube API '+r.status));return j})}
+function normalizeVideo(v){const s=v.snippet||{},t=s.thumbnails||{};return{id:v.id,title:s.title||'Untitled',channel:s.channelTitle||'',published:s.publishedAt||'',views:v.statistics?.viewCount||'',duration:v.contentDetails?.duration||'',image:t.medium?.url||t.high?.url||thumb(v.id)}}
+async function detail(ids){if(!ids.length)return[];const d=await api('videos',{part:'snippet,statistics,contentDetails',id:ids.join(',')});return(d.items||[]).map(normalizeVideo)}
+function card(v){const b=document.createElement('button');b.className='videoCard focus';b.innerHTML=`<div class="thumbWrap"><img class="thumb" src="${esc(v.image||thumb(v.id))}" alt=""><span class="duration">${esc(fmtDuration(v.duration))}</span></div><div class="vtitle">${esc(v.title)}</div><div class="meta">${esc(v.channel)} · ${esc(fmtViews(v.views))}${v.published?' · '+esc(timeAgo(v.published)):''}</div>`;b.onclick=()=>openVideo(v);return b}
+function render(title,items,source='YouTube'){E.content.innerHTML='';const h=document.createElement('div');h.className='sectionTitle';h.innerHTML=`<h2>${esc(title)}</h2><span>${esc(source)}</span>`;E.content.appendChild(h);const g=document.createElement('div');g.className='grid';if(!items.length){g.innerHTML='<div class="empty" style="grid-column:1/-1"><b>No videos found</b><p>Try another search.</p></div>'}else items.forEach(v=>g.appendChild(card(v)));E.content.appendChild(g);requestAnimationFrame(()=>E.content.querySelector('.videoCard')?.focus())}
+const categories={home:'0',trending:'0',music:'10',gaming:'20',news:'25',sports:'17'};
+const labels={home:'Home',trending:'Trending',music:'Music',gaming:'Gaming',news:'News',sports:'Sports'};
+async function loadFeed(name='home'){state.feed=name;document.querySelectorAll('[data-feed]').forEach(x=>x.classList.toggle('active',x.dataset.feed===name));if(!key()){setup();return}loading();try{const d=await api('videos',{part:'snippet,statistics,contentDetails',chart:'mostPopular',regionCode:region(),videoCategoryId:categories[name],maxResults:'12'});render(labels[name],(d.items||[]).map(normalizeVideo),name==='home'?'YouTube Most Popular':'YouTube '+labels[name])}catch(e){errorBox(e.message)}}
+async function search(){const q=E.search.value.trim();if(!q)return;if(!key()){show('settings');return}loading();try{const d=await api('search',{part:'snippet',type:'video',videoEmbeddable:'true',maxResults:'12',q});const ids=(d.items||[]).map(x=>x.id?.videoId).filter(Boolean);const vids=await detail(ids);render('Search: '+q,vids,'YouTube Search')}catch(e){errorBox(e.message)}}
+function errorBox(msg){E.content.innerHTML=`<div class="empty"><b>YouTube could not load</b><p>${esc(msg)}</p><button class="btn focus" data-a="settings">Check settings</button></div>`}
+function prog(){return parse(localStorage.getItem(K.prog),{})}
+function saveProgress(){if(state.ready&&state.video){const p=prog();p[state.video.id]=Math.floor(state.player.getCurrentTime?.()||0);localStorage.setItem(K.prog,JSON.stringify(p))}}
+function saveRecent(v){const a=parse(localStorage.getItem(K.recent),[]).filter(x=>x.id!==v.id);a.unshift(v);localStorage.setItem(K.recent,JSON.stringify(a.slice(0,30)))}
+function favs(){return parse(localStorage.getItem(K.fav),[])}
+function isFav(id){return favs().some(v=>v.id===id)}
+function toggleFav(){if(!state.video)return;const a=favs(),i=a.findIndex(v=>v.id===state.video.id);i>=0?a.splice(i,1):a.unshift(state.video);localStorage.setItem(K.fav,JSON.stringify(a));document.querySelector('[data-a="fav"]').textContent=isFav(state.video.id)?'★':'☆'}
+function openVideo(v){saveProgress();state.video=v;saveRecent(v);E.playerTitle.textContent=v.title;E.watchTitle.textContent=v.title;E.watchMeta.textContent=[v.channel,fmtViews(v.views)].filter(Boolean).join(' · ');document.querySelector('[data-a="fav"]').textContent=isFav(v.id)?'★':'☆';show('player');loadPlayer(v.id)}
+function makePlayer(id){if(!window.YT?.Player)return false;const start=prog()[id]||0;state.player=new YT.Player('yt',{videoId:id,playerVars:{playsinline:1,controls:1,rel:0,start,origin:location.origin},events:{onReady:()=>{state.ready=true;syncPlayer();startProgress()},onStateChange:()=>{syncPlayer();saveProgress()},onError:e=>{E.watchMeta.textContent='Playback error '+e.data}}});return true}
+function loadPlayer(id){state.rateIndex=0;E.speed.textContent='1×';if(state.player&&state.ready){state.player.cueVideoById({videoId:id,startSeconds:prog()[id]||0});return}if(!makePlayer(id)){const t=setInterval(()=>{if(window.YT?.Player){clearInterval(t);makePlayer(id)}},200);setTimeout(()=>clearInterval(t),10000)}}
+function syncPlayer(){if(!state.ready)return;E.pp.textContent=state.player.getPlayerState?.()===YT.PlayerState.PLAYING?'❚❚':'▶';E.mute.textContent=state.player.isMuted?.()?'🔇':'🔊'}
 function ft(s){s=Number(s)||0;const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=Math.floor(s%60);return h?`${h}:${String(m).padStart(2,'0')}:${String(x).padStart(2,'0')}`:`${m}:${String(x).padStart(2,'0')}`}
-function saveProgress(){if(st.ready&&st.video){const t=Number(st.player?.getCurrentTime?.()||0);setProgress(st.video.id,t)}}
-function progress(){clearInterval(st.timer);st.timer=setInterval(()=>{if(!st.ready||document.hidden)return;const c=Number(st.player.getCurrentTime?.()||0),d=Number(st.player.getDuration?.()||0);E.elapsed.textContent=ft(c);E.duration.textContent=ft(d);E.fill.style.width=d?`${Math.min(100,c/d*100)}%`:'0%';if(Math.floor(c)%5===0)setProgress(st.video?.id,c)},1000)}
-function seek(d){if(st.ready)st.player.seekTo(Math.max(0,(st.player.getCurrentTime?.()||0)+d),true)}
-function pp(){if(!st.ready)return;st.player.getPlayerState?.()===YT.PlayerState.PLAYING?st.player.pauseVideo():st.player.playVideo()}
-function speed(){if(!st.ready)return;const a=st.player.getAvailablePlaybackRates?.()||[1];for(let k=0;k<st.rates.length;k++){st.ri=(st.ri+1)%st.rates.length;const r=st.rates[st.ri];if(a.includes(r)){st.player.setPlaybackRate(r);E.speed.textContent=r+'×';break}}}
-function mute(){if(!st.ready)return;st.player.isMuted?.()?st.player.unMute():st.player.mute();buttons()}
-async function search(){const q=E.searchInput.value.trim(),key=(localStorage.getItem(S.key)||'').trim();if(!q)return;st.lastQuery=q;if(!key){E.searchList.innerHTML='<div class="notice"><b>Native search needs one-time setup.</b><div class="muted">Add a YouTube Data API key, or use YouTube search as a fallback.</div><button class="btn primary wide focus" data-a="settings">Set up RayTube search</button><button class="btn secondary wide focus" data-a="youtubeFallback">Open YouTube search</button></div>';E.searchHint.textContent='No API key saved';requestAnimationFrame(()=>E.searchList.querySelector('.focus')?.focus());return}
-E.searchHint.textContent='Searching YouTube…';E.searchList.innerHTML='';try{const u=new URL('https://www.googleapis.com/youtube/v3/search');Object.entries({part:'snippet',type:'video',videoEmbeddable:'true',maxResults:'8',safeSearch:'moderate',q,key}).forEach(([k,v])=>u.searchParams.set(k,v));const r=await fetch(u);if(!r.ok)throw Error('API '+r.status);const d=await r.json(),it=Array.isArray(d.items)?d.items:[];it.forEach(x=>{const id=x.id?.videoId,s=x.snippet||{};if(id)E.searchList.appendChild(item({id,title:s.title,channel:s.channelTitle,thumb:s.thumbnails?.medium?.url||thumb(id)}))});E.searchHint.textContent=it.length?it.length+' embeddable results':'No videos found';if(!it.length)E.searchList.innerHTML='<div class="empty">Try a different search.</div>';requestAnimationFrame(()=>E.searchList.querySelector('.item')?.focus())}catch(e){E.searchHint.textContent='Search failed';E.searchList.innerHTML='<div class="notice"><b>Could not search.</b><div class="muted">'+esc(e.message)+'</div><button class="btn secondary wide focus" data-a="youtubeFallback">Open YouTube search</button></div>'}}
-function action(a){if(a==='smartGo')smartGo();else if(a==='load')fromLink();else if(a==='home'){saveProgress();show('home','#smartInput')}else if(a==='linkMode')show('link','#videoInput');else if(a==='recent')saved('recent');else if(a==='favorites')saved('fav');else if(a==='doSearch')search();else if(a==='back'){saveProgress();st.player?.pauseVideo?.();show(['search','saved'].includes(st.prev)?st.prev:'home')}else if(a==='fav')toggleFav();else if(a==='rw')seek(-10);else if(a==='ff')seek(10);else if(a==='pp')pp();else if(a==='speed')speed();else if(a==='mute')mute();else if(a==='settings'){E.apiKey.value=localStorage.getItem(S.key)||'';E.cc.textContent=st.cc?'On':'Off';show('settings','#apiKey')}else if(a==='cc'){st.cc=!st.cc;E.cc.textContent=st.cc?'On':'Off'}else if(a==='save'){const k=E.apiKey.value.trim();k?localStorage.setItem(S.key,k):localStorage.removeItem(S.key);localStorage.setItem(S.cc,String(st.cc));syncApiState();show('home','#smartInput');E.apiState.textContent=k?'Native search ready':'Search setup not finished'}else if(a==='youtubeFallback')fallbackSearch(st.lastQuery);else if(a==='clear'){localStorage.removeItem(S.recent);localStorage.removeItem(S.fav);localStorage.removeItem(S.prog)}}
-document.addEventListener('click',e=>{const q=e.target.closest('[data-q]');if(q){E.smartInput.value=q.dataset.q;smartGo();return}const t=e.target.closest('[data-a]');if(t)action(t.dataset.a)});
-document.addEventListener('keydown',e=>{const typing=['INPUT','TEXTAREA'].includes(document.activeElement?.tagName);if((e.key==='Escape'||e.key==='Backspace'&&!typing)){e.preventDefault();if(st.view==='player')action('back');else if(st.view!=='home')action('home');return}if(typing){if(e.key==='Enter'){e.preventDefault();if(document.activeElement===E.smartInput)smartGo();else if(document.activeElement===E.videoInput)fromLink();else search()}return}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();move(e.key.replace('Arrow','').toLowerCase());return}if(e.key==='Enter'){const a=document.activeElement?.dataset?.a;if(a){e.preventDefault();action(a)}}});
+function startProgress(){clearInterval(state.timer);state.timer=setInterval(()=>{if(!state.ready)return;const c=state.player.getCurrentTime?.()||0,d=state.player.getDuration?.()||0;E.elapsed.textContent=ft(c);E.duration.textContent=ft(d);E.fill.style.width=d?Math.min(100,c/d*100)+'%':'0%';if(Math.floor(c)%5===0)saveProgress()},1000)}
+function pp(){if(!state.ready)return;state.player.getPlayerState?.()===YT.PlayerState.PLAYING?state.player.pauseVideo():state.player.playVideo()}
+function seek(s){if(state.ready)state.player.seekTo(Math.max(0,(state.player.getCurrentTime?.()||0)+s),true)}
+function speed(){if(!state.ready)return;const avail=state.player.getAvailablePlaybackRates?.()||[1];for(let n=0;n<state.rates.length;n++){state.rateIndex=(state.rateIndex+1)%state.rates.length;const r=state.rates[state.rateIndex];if(avail.includes(r)){state.player.setPlaybackRate(r);E.speed.textContent=r+'×';break}}}
+function mute(){if(!state.ready)return;state.player.isMuted?.()?state.player.unMute():state.player.mute();syncPlayer()}
+function focusables(){return[...document.querySelectorAll('#'+state.view+' .focus:not([disabled])')].filter(x=>x.offsetParent!==null)}
+function move(dir){const els=focusables();if(!els.length)return;const cur=document.activeElement;let i=els.indexOf(cur);if(i<0)i=0;const c=els[i].getBoundingClientRect();let best=null;els.forEach((el,j)=>{if(j===i)return;const r=el.getBoundingClientRect(),dx=r.left+r.width/2-(c.left+c.width/2),dy=r.top+r.height/2-(c.top+c.height/2),primary=dir==='left'?-dx:dir==='right'?dx:dir==='up'?-dy:dy;if(primary<=1)return;const secondary=(dir==='left'||dir==='right')?Math.abs(dy):Math.abs(dx),score=primary+secondary*2.4;if(!best||score<best.score)best={el,score}});(best?.el||els[i]).focus();best?.el?.scrollIntoView?.({block:'nearest',inline:'nearest'})}
+function action(a){if(a==='search')search();else if(a==='settings'){E.apiKey.value=key();E.region.value=region();show('settings')}else if(a==='back'){saveProgress();state.player?.pauseVideo?.();show('feed');requestAnimationFrame(()=>E.content.querySelector('.videoCard')?.focus())}else if(a==='backSettings'){show('feed');loadFeed(state.feed)}else if(a==='saveKey'){const v=E.apiKey.value.trim();v?localStorage.setItem(K.key,v):localStorage.removeItem(K.key);localStorage.setItem(K.region,E.region.value.trim().toUpperCase()||'DE');show('feed');loadFeed('home')}else if(a==='saveRegion'){localStorage.setItem(K.region,E.region.value.trim().toUpperCase()||'DE');show('feed');loadFeed(state.feed)}else if(a==='fav')toggleFav();else if(a==='rw')seek(-10);else if(a==='ff')seek(10);else if(a==='pp')pp();else if(a==='speed')speed();else if(a==='mute')mute()}
+document.addEventListener('click',e=>{const f=e.target.closest('[data-feed]');if(f){loadFeed(f.dataset.feed);return}const a=e.target.closest('[data-a]');if(a)action(a.dataset.a)});
+document.addEventListener('keydown',e=>{const input=document.activeElement?.tagName==='INPUT';if(input){if(e.key==='Enter'){e.preventDefault();document.activeElement===E.search?search():document.activeElement.blur()}return}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();move(e.key.slice(5).toLowerCase());return}if(e.key==='Enter'){const el=document.activeElement;if(el?.dataset?.feed){e.preventDefault();loadFeed(el.dataset.feed)}else if(el?.dataset?.a){e.preventDefault();action(el.dataset.a)}}if(e.key==='Escape'||e.key==='Backspace'){if(state.view==='player'){e.preventDefault();action('back')}else if(state.view==='settings'){e.preventDefault();action('backSettings')}}});
 window.addEventListener('beforeunload',saveProgress);document.addEventListener('visibilitychange',()=>{if(document.hidden)saveProgress()});
-window.onYouTubeIframeAPIReady=()=>{if(st.video&&!st.player)mkPlayer(st.video.id)};
-const params=new URLSearchParams(location.search),v=params.get('v')||idOf(params.get('url')||params.get('text')||'');const setupKey=params.get('key');if(setupKey){localStorage.setItem(S.key,setupKey);history.replaceState({},'',location.pathname)}syncApiState();E.apiKey.value=localStorage.getItem(S.key)||'';E.cc.textContent=st.cc?'On':'Off';if(v&&idOf(v)){E.smartInput.value=v;open({id:idOf(v),title:'YouTube '+idOf(v)})}else show('home','#smartInput');
+window.onYouTubeIframeAPIReady=()=>{if(state.video&&!state.player)makePlayer(state.video.id)};
+E.region.value=region();E.apiKey.value=key();show('feed');loadFeed('home');
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 })();
 </script>
